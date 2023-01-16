@@ -1,16 +1,17 @@
-import Head from 'next/head';
-import Image from 'next/image';
+import Head from "next/head";
+import { CldImage } from "next-cloudinary";
+import Image from "next/image";
 
-import Layout from '@components/Layout';
-import Section from '@components/Section';
-import Container from '@components/Container';
-import Button from '@components/Button';
+import Layout from "@components/Layout";
+import Section from "@components/Section";
+import Container from "@components/Container";
+import Button from "@components/Button";
 
-import people from '@data/people';
-import animals from '@data/animals';
-import space from '@data/space';
+import people from "@data/people";
+import animals from "@data/animals";
+import space from "@data/space";
 
-import styles from '../styles/Home.module.scss';
+import styles from "../styles/Home.module.scss";
 
 export default function Home() {
   return (
@@ -21,39 +22,48 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className="sr-only">Image Gallery</h1>
+      {/* <h1 className="sr-only">Image Gallery</h1> */}
 
       <Section>
         <Container>
           <h2 className={styles.heading}>People</h2>
 
           <ul className={styles.imageGrid}>
-            {people.map(image => {
+            {people.map((image) => {
               return (
                 <li key={image.link}>
-                  <Image
-                    width={image.width}
-                    height={image.height}
+                  <CldImage
+                    deliveryType="fetch"
+                    width={1200}
+                    height={1200}
                     src={image.image}
                     alt={image.alt}
                     loading="lazy"
+                    crop="thumb"
+                    gravity="center"
+                    // zoom="0.05"
+                    sizes="(min-width: 480px) 50vw,
+                          (max-width: 768px) 33vw,
+                    (max-width: 976px) 25vw,
+                       90vw"
                   />
                 </li>
-              )
+              );
             })}
           </ul>
         </Container>
       </Section>
 
-      <Section>
+      {/* <Section>
         <Container>
           <h2 className={styles.heading}>Animals</h2>
 
           <ul className={styles.imageGrid}>
-            {animals.map(image => {
+            {animals.map((image) => {
               return (
                 <li key={image.link}>
-                  <Image
+                  <CldImage
+                    deliveryType="fetch"
                     width={image.width}
                     height={image.height}
                     src={image.image}
@@ -61,33 +71,41 @@ export default function Home() {
                     loading="lazy"
                   />
                 </li>
-              )
+              );
             })}
           </ul>
         </Container>
-      </Section>
+      </Section> */}
 
       <Section>
         <Container>
           <h2 className={styles.heading}>Space</h2>
 
           <ul className={styles.imageGrid}>
-            {space.map(image => {
+            {space.map((image) => {
               return (
                 <li key={image.link}>
-                  <Image
-                    width={image.width}
-                    height={image.height}
+                  <CldImage
+                    deliveryType="fetch"
+                    width={1200}
+                    height={1200}
                     src={image.image}
                     alt={image.alt}
                     loading="lazy"
+                    crop="thumb"
+                    gravity="center"
+                    zoom="0.5"
+                    sizes="(min-width: 480px) 50vw,
+                          (max-width: 768px) 33.2vw,
+                    (max-width: 976px) 25vw,
+                       92vw"
                   />
                 </li>
-              )
+              );
             })}
           </ul>
         </Container>
       </Section>
     </Layout>
-  )
+  );
 }
