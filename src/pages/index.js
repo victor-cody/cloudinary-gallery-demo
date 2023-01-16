@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Head from "next/head";
 import { CldImage } from "next-cloudinary";
 import Image from "next/image";
@@ -14,6 +15,8 @@ import space from "@data/space";
 import styles from "../styles/Home.module.scss";
 
 export default function Home() {
+  const [gravity, setGravity] = useState("center");
+
   return (
     <Layout>
       <Head>
@@ -34,13 +37,13 @@ export default function Home() {
                 <li key={image.link}>
                   <CldImage
                     deliveryType="fetch"
-                    width={1200}
-                    height={1200}
+                    width={2000}
+                    height={2000}
                     src={image.image}
                     alt={image.alt}
                     loading="lazy"
                     crop="thumb"
-                    gravity="center"
+                    gravity={gravity}
                     // zoom="0.05"
                     sizes="(min-width: 480px) 50vw,
                           (max-width: 768px) 33vw,
@@ -54,7 +57,7 @@ export default function Home() {
         </Container>
       </Section>
 
-      {/* <Section>
+      <Section>
         <Container>
           <h2 className={styles.heading}>Animals</h2>
 
@@ -64,18 +67,25 @@ export default function Home() {
                 <li key={image.link}>
                   <CldImage
                     deliveryType="fetch"
-                    width={image.width}
-                    height={image.height}
+                    width={2000}
+                    height={2000}
                     src={image.image}
                     alt={image.alt}
                     loading="lazy"
+                    crop="thumb"
+                    gravity={gravity}
+                    // zoom="0.05"
+                    sizes="(min-width: 480px) 50vw,
+                          (max-width: 768px) 33vw,
+                    (max-width: 976px) 25vw,
+                       90vw"
                   />
                 </li>
               );
             })}
           </ul>
         </Container>
-      </Section> */}
+      </Section>
 
       <Section>
         <Container>
@@ -87,13 +97,13 @@ export default function Home() {
                 <li key={image.link}>
                   <CldImage
                     deliveryType="fetch"
-                    width={1200}
-                    height={1200}
+                    width={2000}
+                    height={2000}
                     src={image.image}
                     alt={image.alt}
                     loading="lazy"
                     crop="thumb"
-                    gravity="center"
+                    gravity={gravity}
                     zoom="0.5"
                     sizes="(min-width: 480px) 50vw,
                           (max-width: 768px) 33.2vw,
